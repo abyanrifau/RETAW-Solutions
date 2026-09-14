@@ -3,9 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Savings Calculator | RETAW S1 RO Water Purifier</title>
-  <meta name="description" content="See how much your household could save by switching from bottled or delivered water to the RETAW S1 RO Water Purifier.">
+  <title>Water Purifier Savings Calculator | RETAW Maldives</title>
+  <meta name="description" content="Work out how much your household could save by switching from bottled water to the RETAW S1 water purifier, with purifier and filter change costs included.">
+  <link rel="canonical" href="https://www.retaw.mv/savings">
   <meta name="theme-color" content="#0599D8">
+  <!-- Open Graph / Twitter Card -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="RETAW Solutions">
+  <meta property="og:title" content="Water Purifier Savings Calculator | RETAW Maldives">
+  <meta property="og:description" content="Work out how much your household could save by switching from bottled water to the RETAW S1 water purifier, with purifier and filter change costs included.">
+  <meta property="og:url" content="https://www.retaw.mv/savings">
+  <meta property="og:image" content="https://www.retaw.mv/assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="RETAW Solutions logo beside the S1 RO water purifier">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Water Purifier Savings Calculator | RETAW Maldives">
+  <meta name="twitter:description" content="Work out how much your household could save by switching from bottled water to the RETAW S1 water purifier, with purifier and filter change costs included.">
+  <meta name="twitter:image" content="https://www.retaw.mv/assets/og-image.jpg">
+  <meta name="twitter:image:alt" content="RETAW Solutions logo beside the S1 RO water purifier">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,20 +29,83 @@
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add("js")</script>
   <script src="app.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://www.retaw.mv/#business",
+        "name": "RETAW Solutions",
+        "url": "https://www.retaw.mv/",
+        "logo": "https://www.retaw.mv/assets/retaw-logo.png",
+        "image": "https://www.retaw.mv/assets/og-image.jpg",
+        "description": "RETAW Solutions sells and installs RO water purifiers for homes and businesses across the Maldives.",
+        "telephone": "+960 997 3829",
+        "email": "info@retaw.mv",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "MV"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Maldives"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+960 997 3829",
+            "contactType": "customer service",
+            "areaServed": "MV",
+            "availableLanguage": "en"
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+960 400 4664",
+            "contactType": "customer service",
+            "areaServed": "MV",
+            "availableLanguage": "en"
+          }
+        ],
+        "sameAs": [
+          "https://www.facebook.com/retawmv",
+          "https://www.instagram.com/retawmv"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.retaw.mv/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Savings Calculator",
+            "item": "https://www.retaw.mv/savings"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header" data-header>
     <div class="container header-inner">
-      <a class="brand" href="index.html"><img src="assets/retaw-logo.png" alt="Retaw Solutions" width="600" height="214"></a>
+      <a class="brand" href="./"><img src="assets/retaw-logo.png" alt="RETAW Solutions home page" width="600" height="214"></a>
       <nav class="nav" id="site-nav" data-nav aria-label="Main">
-        <a href="index.html">Home</a>
-        <a href="how-it-works.html">How It Works</a>
-        <a href="savings.html" aria-current="page">Savings</a>
-        <a href="product.html">S1 Purifier</a>
-        <a href="contact.html">Contact</a>
-        <a class="btn btn-primary" href="contact.html#quote">Get a Free Quote</a>
+        <a href="./">Home</a>
+        <a href="how-it-works">How It Works</a>
+        <a href="savings" aria-current="page">Savings</a>
+        <a href="product">S1 Purifier</a>
+        <a href="contact">Contact</a>
+        <a class="btn btn-primary" href="contact#order">Order Now</a>
       </nav>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-nav-toggle>
         <span class="nav-toggle-bars"></span><span class="sr-only">Menu</span>
@@ -43,7 +122,7 @@
         <h1>How much could you save on water?</h1>
         <p class="lede">Bottled and delivered water adds up quietly, month after month. Enter what you spend today to see the total over one, two and five years.</p>
       </div>
-      <div class="wave wave--to-tint" aria-hidden="true">
+      <div class="wave" aria-hidden="true">
         <svg viewBox="0 0 2880 60" preserveAspectRatio="none">
           <path class="wave-back" d="M0 30 Q180 0 360 30 T720 30 T1080 30 T1440 30 T1800 30 T2160 30 T2520 30 T2880 30 V60 H0Z"/>
           <path class="wave-front" d="M0 40 Q180 18 360 40 T720 40 T1080 40 T1440 40 T1800 40 T2160 40 T2520 40 T2880 40 V60 H0Z"/>
@@ -51,7 +130,7 @@
       </div>
     </section>
 
-    <section class="section section--tint" style="padding-top:32px">
+    <section class="section" style="padding-top:32px">
       <div class="container savings-layout">
         <!-- Calculator -->
         <form class="calc" data-calc onsubmit="return false" aria-label="Savings calculator">
@@ -61,10 +140,22 @@
             <input id="spend" type="number" inputmode="decimal" min="0" step="1" placeholder="0" data-calc-input>
             <small>/ month</small>
           </div>
-          <div class="calc-chips"><span>Try an example:</span>
-            <button type="button" class="chip" data-calc-preset="300">MVR 300</button>
-            <button type="button" class="chip" data-calc-preset="600">MVR 600</button>
-            <button type="button" class="chip" data-calc-preset="1000">MVR 1,000</button>
+          <div class="calc-chips" role="group" aria-label="Estimate by household size"><span>Not sure? Estimate by household size:</span>
+            <button type="button" class="chip" data-calc-people="1" aria-pressed="false">1 person</button>
+            <button type="button" class="chip" data-calc-people="2" aria-pressed="false">2 people</button>
+            <button type="button" class="chip" data-calc-people="3" aria-pressed="false">3 people</button>
+            <button type="button" class="chip" data-calc-people="4" aria-pressed="false">4 people</button>
+            <button type="button" class="chip" data-calc-people="5" aria-pressed="false">5 people</button>
+          </div>
+          <p class="calc-basis" data-calc-basis aria-live="polite" hidden></p>
+          <div class="calc-estimate">
+            <strong>How we estimate household spend</strong>
+            <ul>
+              <li>One person drinks about <strong>90&nbsp;L</strong> of water a month</li>
+              <li>90&nbsp;L ÷ 1.5&nbsp;L per bottle = <strong>60 bottles</strong></li>
+              <li>60 bottles × MVR&nbsp;7 per bottle = <strong>MVR&nbsp;420 per person, per month</strong></li>
+            </ul>
+            <span>It's an average. If you know what you actually spend, type that in instead.</span>
           </div>
 
           <div class="calc-results" aria-live="polite">
@@ -73,8 +164,7 @@
             <div class="calc-result calc-result--feature"><span class="calc-period">5 years</span><span class="calc-value"><small>MVR</small><span data-calc-out="5">0</span></span></div>
           </div>
 
-          <p class="calc-note" data-running-state="unset">These figures show the bottled-water spend you'd avoid. Filter and membrane replacement costs are not deducted yet (see the placeholder below). The S1 unit itself is priced by quote.</p>
-          <p class="calc-note" data-running-state="set" hidden>Estimated savings after PCT element and RO membrane replacements. The S1 unit itself is priced by quote.</p>
+          <p class="calc-note">Net savings after buying the S1 (MVR 5,660, installed free) and a filter change every 6 months (MVR 600 each).</p>
         </form>
 
         <!-- Before / after -->
@@ -82,37 +172,63 @@
           <h2 id="compare-title" style="font-size:1.35rem">Before and after, per year</h2>
           <div class="compare">
             <div class="compare-row">
-              <div class="compare-head"><span>Today: bottled or delivered water</span><strong>MVR <span data-calc-yearly>0</span></strong></div>
+              <div class="compare-head"><span>Today: bottled or delivered water</span><strong>MVR <span data-calc-yearly>0</span> / yr</strong></div>
               <div class="bar"><div class="bar-fill bar-fill--before" data-bar-before></div></div>
             </div>
             <div class="compare-row">
-              <div class="compare-head">
-                <span>With the S1: filter replacements</span>
-                <strong data-calc-after>To be confirmed</strong>
-              </div>
+              <div class="compare-head"><span>With the S1: filter changes</span><strong>MVR 1,200 / yr</strong></div>
               <div class="bar"><div class="bar-fill bar-fill--after" data-bar-after></div></div>
             </div>
           </div>
 
+          <!-- Prices supplied by RETAW. Calculator values live in CONFIG in app.js. -->
           <ul class="breakdown">
-            <li><span>PCT composite element</span><strong>Replace every 6 months</strong></li>
-            <li><span>DOW RO membrane</span><strong>2-year lifespan</strong></li>
-            <li>
-              <span>Replacement cost <span class="placeholder-tag" data-running-state="unset">Placeholder</span></span>
-              <!-- CONTENT PLACEHOLDER: RETAW has not supplied filter/membrane replacement prices.
-                   Do not enter an invented figure. Real values go in CONFIG in app.js. -->
-              <strong data-running-state="unset">Pending from RETAW</strong>
-              <strong data-running-state="set" hidden>Included in estimate</strong>
-            </li>
+            <li><span>S1 RO Water Purifier (one-off)</span><strong>MVR 5,660</strong></li>
+            <li><span>Installation</span><strong>Free</strong></li>
+            <li><span>Filter change, every 6 months</span><strong>MVR 600</strong></li>
+            <li><span>Pays for itself in</span><strong data-calc-payback>Enter your spend</strong></li>
           </ul>
-          <p class="calc-note" data-running-state="unset">Running costs are a placeholder estimate until RETAW confirms replacement pricing. Ask for them when you request your quote.</p>
-          <a class="btn btn-primary btn-block" href="contact.html#quote" style="margin-top:20px">Get a Free Quote</a>
+          <div class="info-note" style="margin-top:8px">
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span><strong>Filter changes are essential.</strong> Without a filter change every 6 months, the S1 can't clean your water properly.</span>
+          </div>
+          <a class="btn btn-primary btn-block" href="contact#order" style="margin-top:20px">Order Now</a>
         </aside>
+      </div>
+
+      <!-- Cumulative cost chart: rendered by app.js from the calculator above -->
+      <div class="container">
+        <div class="card cost-chart" data-cost-chart role="region" aria-labelledby="cost-chart-title">
+          <div class="cost-chart-head">
+            <div>
+              <h2 id="cost-chart-title" class="cost-chart-title">Total spent over 5 years (MVR)</h2>
+              <p class="cost-chart-sub" data-chart-summary aria-live="polite">Enter your spend or pick a household size above to see when the S1 pays for itself.</p>
+            </div>
+            <ul class="chart-legend" aria-label="Chart legend">
+              <li><span class="chart-key chart-key--line" style="background:#C2410C"></span>Bottled or delivered water</li>
+              <li><span class="chart-key chart-key--line" style="background:#0479AE"></span>With the S1 (purifier + filter changes)</li>
+              <li><span class="chart-key chart-key--area"></span>Your savings</li>
+            </ul>
+          </div>
+          <div class="cost-chart-plot" data-chart-plot>
+            <div class="chart-tooltip" data-chart-tooltip hidden></div>
+          </div>
+          <p class="chart-hint">Hover over the chart, or focus it and use the arrow keys, to see any month.</p>
+          <details class="chart-table">
+            <summary>Show as a table</summary>
+            <div class="table-scroll">
+              <table>
+                <thead><tr><th scope="col">After</th><th scope="col">Bottled water</th><th scope="col">With the S1</th><th scope="col">Difference</th></tr></thead>
+                <tbody data-chart-table></tbody>
+              </table>
+            </div>
+          </details>
+        </div>
       </div>
     </section>
 
     <!-- ============ NON-MONETARY SAVINGS ============ -->
-    <section class="section">
+    <section class="section section--tint">
       <div class="container">
         <div class="section-head section-head--center reveal">
           <p class="eyebrow">Beyond the money</p>
@@ -138,15 +254,15 @@
       </div>
     </section>
 
-    <section class="section" style="padding-top:0">
+    <section class="section">
       <div class="container">
         <div class="cta-band reveal">
           <span class="bubble bubble--a" aria-hidden="true"></span>
           <span class="bubble bubble--b" aria-hidden="true"></span>
-          <h2>Find out what the S1 costs for your home</h2>
-          <p>Pricing depends on your setup, so we quote each installation. It's free and there's no obligation.</p>
+          <h2>Clean water at home for MVR 5,660</h2>
+          <p>Installation is free. Place your order and the RETAW team will get in touch to arrange your installation.</p>
           <div class="cta-row">
-            <a class="btn btn-light btn-lg" href="contact.html#quote">Get a Free Quote
+            <a class="btn btn-light btn-lg" href="contact#order">Order Now
               <svg class="i i--arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
             <a class="btn btn-outline-light btn-lg" href="tel:+9609973829">Call 9973829</a>
           </div>
@@ -159,20 +275,20 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a class="footer-logo" href="index.html"><img src="assets/retaw-logo.png" alt="Retaw Solutions" width="600" height="214" loading="lazy"></a>
-          <p>RO water purifiers for homes and businesses in the Maldives, with free installation and local service.</p>
+          <a class="footer-logo" href="./"><img src="assets/retaw-logo.png" alt="RETAW Solutions home page" width="600" height="214" loading="lazy"></a>
+          <p>RETAW Solutions sells and installs the S1 RO Water Purifier for homes and businesses across the Maldives. The S1 costs MVR 5,660 with free installation, a 2-year warranty and 4-hour fault rectification.</p>
         </div>
         <div>
-          <h4>Explore</h4>
+          <h2 class="footer-heading">Explore</h2>
           <ul class="footer-links">
-            <li><a href="how-it-works.html">How It Works</a></li>
-            <li><a href="savings.html">Savings Calculator</a></li>
-            <li><a href="product.html">S1 RO Water Purifier</a></li>
-            <li><a href="contact.html#quote">Get a Free Quote</a></li>
+            <li><a href="how-it-works">How It Works</a></li>
+            <li><a href="savings">Savings Calculator</a></li>
+            <li><a href="product">S1 RO Water Purifier</a></li>
+            <li><a href="contact#order">Order Now</a></li>
           </ul>
         </div>
         <div>
-          <h4>Follow</h4>
+          <h2 class="footer-heading">Follow</h2>
           <ul class="footer-contact">
             <!-- TODO(RETAW): confirm the exact Facebook / Instagram profile URLs for @retawmv -->
             <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg><a href="https://www.facebook.com/retawmv" rel="noopener" target="_blank">Facebook @retawmv</a></li>
@@ -180,7 +296,7 @@
           </ul>
         </div>
         <div>
-          <h4>Contact</h4>
+          <h2 class="footer-heading">Contact</h2>
           <ul class="footer-contact">
             <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><a href="tel:+9609973829">9973829</a>&nbsp;/&nbsp;<a href="tel:+9604004664">4004664</a></li>
             <li><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:info@retaw.mv">info@retaw.mv</a></li>
@@ -189,7 +305,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Retaw Solutions. All rights reserved.</span>
+        <span>© <span data-year>2026</span> RETAW Solutions. All rights reserved.</span>
         <span>2-Year Warranty · 4-Hour Fault Rectification · Free Installation</span>
       </div>
     </div>
@@ -198,7 +314,7 @@
   <div class="sticky-cta" data-sticky-cta>
     <a class="btn btn-secondary" href="tel:+9609973829" aria-label="Call RETAW on 9973829">
       <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Call</a>
-    <a class="btn btn-primary" href="contact.html#quote">Get a Free Quote</a>
+    <a class="btn btn-primary" href="contact#order">Order Now</a>
   </div>
 </body>
 </html>

@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 1117" role="img" aria-labelledby="t">
+  <title id="t">Cutaway of the RETAW PCT Composite Filter Element showing its four layers</title>
+  <!-- Vector redraw of RETAW's brochure cutaway. Leader lines end at x=448 on
+       y = 140 / 388 / 643 / 975 (12.5% / 34.7% / 57.6% / 87.3%) to match the page markers. -->
+  <defs>
+    <linearGradient id="shell" x1="0" x2="1">
+      <stop offset="0" stop-color="#C9D2D7"/><stop offset=".12" stop-color="#F4F7F9"/>
+      <stop offset=".5" stop-color="#FFFFFF"/><stop offset=".88" stop-color="#EEF2F4"/><stop offset="1" stop-color="#BFC9CE"/>
+    </linearGradient>
+    <linearGradient id="fabric" x1="0" x2="1">
+      <stop offset="0" stop-color="#DCE3E7"/><stop offset=".5" stop-color="#F7F9FA"/><stop offset="1" stop-color="#D3DBE0"/>
+    </linearGradient>
+    <linearGradient id="carbonFiber" x1="0" x2="1">
+      <stop offset="0" stop-color="#15191B"/><stop offset=".45" stop-color="#2E3538"/><stop offset="1" stop-color="#111416"/>
+    </linearGradient>
+    <linearGradient id="ppCotton" x1="0" x2="1">
+      <stop offset="0" stop-color="#A9B3B8"/><stop offset=".3" stop-color="#E4E9EC"/>
+      <stop offset=".5" stop-color="#FBFCFC"/><stop offset=".7" stop-color="#E1E7EA"/><stop offset="1" stop-color="#A3AEB3"/>
+    </linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9EEF0"/><stop offset=".5" stop-color="#B9C3C8"/><stop offset="1" stop-color="#8E9A9F"/>
+    </linearGradient>
+    <linearGradient id="pleat" x1="0" x2="1">
+      <stop offset="0" stop-color="#C3CCD1"/><stop offset=".5" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C3CCD1"/>
+    </linearGradient>
+    <pattern id="fabricWeave" width="6" height="6" patternUnits="userSpaceOnUse">
+      <path d="M0 3h6M3 0v6" stroke="#C6D0D5" stroke-width=".6" opacity=".6"/>
+    </pattern>
+    <pattern id="fiberLines" width="8" height="10" patternUnits="userSpaceOnUse">
+      <path d="M2 0v10M6 0v10" stroke="#3E474B" stroke-width=".8" opacity=".55"/>
+    </pattern>
+    <pattern id="granules" width="28" height="28" patternUnits="userSpaceOnUse">
+      <rect width="28" height="28" fill="#17191A"/>
+      <circle cx="5" cy="6" r="3" fill="#2F3436"/><circle cx="17" cy="4" r="2.2" fill="#3A4043"/>
+      <circle cx="23" cy="15" r="3.4" fill="#262A2C"/><circle cx="10" cy="17" r="2.6" fill="#40474A"/>
+      <circle cx="3" cy="24" r="2" fill="#343A3C"/><circle cx="18" cy="24" r="2.8" fill="#2C3133"/>
+      <circle cx="13" cy="10" r="1.2" fill="#5A6265"/><circle cx="25" cy="27" r="1" fill="#5A6265"/>
+    </pattern>
+    <clipPath id="body"><rect x="44" y="14" width="360" height="1090" rx="30"/></clipPath>
+  </defs>
+
+  <!-- Housing -->
+  <rect x="36" y="6" width="376" height="1106" rx="36" fill="url(#shell)" stroke="#B5C0C5" stroke-width="2"/>
+
+  <g clip-path="url(#body)">
+    <!-- Top cap -->
+    <rect x="44" y="14" width="360" height="46" fill="url(#cap)"/>
+
+    <!-- Main composite section: 1 non-woven (outer) > 2 carbon fiber > 3 PP cotton (core) -->
+    <rect x="62" y="60" width="324" height="640" fill="url(#fabric)"/>
+    <rect x="62" y="60" width="324" height="640" fill="url(#fabricWeave)"/>
+    <rect x="100" y="60" width="248" height="640" fill="url(#carbonFiber)"/>
+    <rect x="100" y="60" width="248" height="640" fill="url(#fiberLines)"/>
+    <rect x="156" y="60" width="136" height="640" fill="url(#ppCotton)"/>
+    <rect x="206" y="60" width="36" height="640" fill="#F7F9FA" opacity=".9"/>
+    <path d="M206 60v640M242 60v640" stroke="#C8D0D4" stroke-width="1.5"/>
+
+    <!-- Divider cap -->
+    <rect x="44" y="700" width="360" height="34" fill="url(#cap)"/>
+
+    <!-- Pleated transition section -->
+    <rect x="80" y="734" width="288" height="178" fill="url(#pleat)"/>
+    <g stroke="#B9C3C8" stroke-width="2" opacity=".8">
+      <path d="M116 734v178M152 734v178M188 734v178M224 734v178M260 734v178M296 734v178M332 734v178"/>
+    </g>
+
+    <!-- Divider cap -->
+    <rect x="44" y="912" width="360" height="30" fill="url(#cap)"/>
+
+    <!-- 4 Rear carbon rod (granular block) -->
+    <rect x="62" y="942" width="324" height="162" fill="url(#granules)"/>
+    <rect x="62" y="942" width="324" height="162" fill="url(#carbonFiber)" opacity=".25"/>
+
+    <!-- Housing inner shading -->
+    <rect x="44" y="14" width="18" height="1090" fill="#000" opacity=".06"/>
+    <rect x="386" y="14" width="18" height="1090" fill="#000" opacity=".08"/>
+  </g>
+
+  <!-- Leader lines -->
+  <g stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity=".9">
+    <path d="M368 140H448M324 388H448M270 643H448M350 975H448"/>
+  </g>
+  <g stroke="#5F6E75" stroke-width="2" stroke-linecap="round">
+    <path d="M368 140H448M324 388H448M270 643H448M350 975H448"/>
+  </g>
+  <g fill="#0479AE">
+    <circle cx="368" cy="140" r="5"/><circle cx="324" cy="388" r="5"/>
+    <circle cx="270" cy="643" r="5"/><circle cx="350" cy="975" r="5"/>
+  </g>
+</svg>

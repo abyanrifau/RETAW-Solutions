@@ -82,7 +82,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- Layout ---------- */
 .container { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: var(--gutter); }
 .section { padding-block: clamp(64px, 10vw, 112px); }
-.section--tint { background: var(--blue-50); }
+.section--tint { background: var(--blue-50); border-block: 1px solid var(--line); }
 .section-head { max-width: 680px; margin-bottom: clamp(32px, 5vw, 56px); }
 .section-head--center { margin-inline: auto; text-align: center; }
 .lede { font-size: clamp(1.05rem, 2.2vw, 1.2rem); color: var(--ink-2); }
@@ -114,6 +114,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .btn-secondary:hover { border-color: var(--blue); color: var(--blue-700); }
 .btn-light { background: #fff; color: var(--blue-700); }
 .btn-light:hover { background: var(--blue-50); color: var(--blue-700); }
+/* Primary CTAs: small tactile response. Gentle lift on hover (colour deepens via the rules above), quick press on click */
+.btn-primary, .btn-light { transition: background-color .2s, color .2s, border-color .2s, transform .18s var(--ease), box-shadow .2s; }
+@media (hover: hover) {
+  .btn-primary:hover, .btn-light:hover { transform: scale(1.03); }
+}
+.btn-primary:active, .btn-light:active { transform: scale(.97); transition-duration: .08s; }
 .btn-outline-light { color: #fff; border-color: rgba(255,255,255,.55); }
 .btn-outline-light:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,.08); }
 .btn-lg { min-height: 58px; padding: 0 30px; font-size: 1.05rem; }
@@ -201,7 +207,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative; overflow: hidden;
-  background: linear-gradient(180deg, #fff 0%, var(--blue-50) 100%);
+  /* Deeper tint than --blue-50 so the hero reads as its own band against the white section below */
+  background: linear-gradient(180deg, var(--blue-50) 0%, #DDEFF9 100%);
   padding-top: clamp(28px, 6vw, 72px);
 }
 .hero-grid {
@@ -225,8 +232,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .bubble { position: absolute; border-radius: 50%; background: var(--blue); }
 .bubble::after { content: ""; position: absolute; width: 28%; height: 28%; border-radius: 50%; background: #fff; top: 26%; left: 26%; }
-.hero .bubble--a { width: 54px; height: 54px; top: 4%; right: 3%; animation: float 7s ease-in-out infinite; }
-.hero .bubble--b { width: 30px; height: 30px; bottom: 22%; left: 8%; background: var(--green); animation: float 6s ease-in-out -2s infinite; }
+/* Bubbles stay still: the trust-badge pop-in is the one motion in the hero */
+.hero .bubble--a { width: 54px; height: 54px; top: 4%; right: 3%; }
+.hero .bubble--b { width: 30px; height: 30px; bottom: 22%; left: 8%; background: var(--green); }
 .hero-product {
   position: relative; width: min(62%, 300px); mix-blend-mode: multiply;
   filter: drop-shadow(0 30px 30px rgba(30, 42, 48, .18));
@@ -253,6 +261,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: var(--green-50); color: var(--green-700);
 }
 .trust .i { width: 21px; height: 21px; }
+/* Badge icons pop in, slightly staggered, when the badge row scrolls into view */
+.js .trust .i-wrap { opacity: 0; transform: scale(.5); transition: opacity .25s ease, transform .42s cubic-bezier(.34, 1.56, .64, 1); }
+.js .trust.is-popped .i-wrap { opacity: 1; transform: none; }
+.js .trust li:nth-child(2) .i-wrap { transition-delay: .09s; }
+.js .trust li:nth-child(3) .i-wrap { transition-delay: .18s; }
 
 @media (min-width: 640px) {
   .trust { grid-template-columns: repeat(3, 1fr); }
@@ -273,14 +286,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Animated wave */
 .wave { position: relative; height: 56px; margin-top: -8px; overflow: hidden; pointer-events: none; }
 .wave svg { position: absolute; bottom: 0; left: 0; width: 200%; max-width: none; height: 100%; }
-.wave-back { fill: var(--blue-100); animation: wave 18s linear infinite; }
-.wave-front { fill: #fff; animation: wave 11s linear infinite reverse; }
+/* Slow, continuous drift: more felt than seen */
+.wave-back { fill: #C6E5F5; animation: wave 60s linear infinite; }
+.wave-front { fill: #fff; animation: wave 42s linear infinite reverse; }
 .wave--to-tint .wave-front { fill: var(--blue-50); }
 @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
 /* ---------- Page hero (inner pages) ---------- */
-.page-hero { background: linear-gradient(180deg, #fff 0%, var(--blue-50) 100%); padding-top: clamp(40px, 7vw, 88px); position: relative; overflow: hidden; }
+.page-hero { background: linear-gradient(180deg, var(--blue-50) 0%, #DDEFF9 100%); padding-top: clamp(40px, 7vw, 88px); position: relative; overflow: hidden; }
 .page-hero .container { position: relative; z-index: 1; }
 .page-hero .lede { max-width: 640px; }
 .page-hero .bubble--a { width: 120px; height: 120px; right: -30px; top: 30px; opacity: .1; }
@@ -315,9 +329,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   content: ""; position: absolute; left: 23px; top: 48px; bottom: 0; width: 2px;
   background-image: linear-gradient(180deg, var(--blue) 50%, transparent 50%);
   background-size: 2px 10px; opacity: .55;
-  animation: flow-y 1s linear infinite;
+  animation: flow-y 1s linear .6s infinite; /* starts once the section entrance has finished */
 }
-.flow h3 { margin: 4px 0 4px; font-size: 1.08rem; }
+/* .flow-title is an h2 on How It Works (for heading hierarchy) styled exactly like .flow h3 */
+.flow h3, .flow .flow-title { margin: 4px 0 4px; font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; }
 .flow p { color: var(--ink-2); font-size: .96rem; }
 @keyframes flow-y { from { background-position: 0 0; } to { background-position: 0 10px; } }
 
@@ -332,7 +347,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 @keyframes flow-x { from { background-position: 0 0; } to { background-position: 10px 0; } }
 
-.media-frame { border-radius: var(--radius); overflow: hidden; background: var(--blue-50); }
+.media-frame { position: relative; border-radius: var(--radius); overflow: hidden; background: var(--blue-50); }
 .media-frame img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- Savings calculator ---------- */
@@ -360,6 +375,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-size: .86rem; font-weight: 500; cursor: pointer; transition: border-color .2s, color .2s;
 }
 .chip:hover { border-color: var(--blue); color: var(--blue-700); }
+.chip[aria-pressed="true"] { background: var(--blue-600); border-color: var(--blue-600); color: #fff; }
+.calc-basis { margin: 10px 0 0; font-size: .9rem; font-weight: 600; color: var(--blue-700); }
+.calc-estimate {
+  margin: 12px 0 0; padding: 12px 14px; border-radius: 12px; background: var(--blue-50);
+  font-size: .85rem; line-height: 1.55; color: var(--ink-2);
+}
+.calc-estimate strong { color: var(--ink); }
+.calc-estimate ul { margin: 6px 0; padding-left: 18px; }
+.calc-estimate li { margin: 2px 0; }
 
 .calc-results { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 22px; }
 .calc-result {
@@ -372,15 +396,25 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .calc-value { font-family: var(--font-head); font-weight: 800; font-size: clamp(1.05rem, 3.6vw, 1.7rem); letter-spacing: -0.02em; line-height: 1.1; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
 .calc-value small { display: block; font-size: .62em; font-weight: 700; opacity: .75; letter-spacing: 0; }
 .calc-note { font-size: .86rem; color: var(--ink-3); margin-top: 16px; }
+.calc-result.is-negative .calc-value { color: #9B2C20; }
+.calc-result--feature.is-negative { background: #FCEBEA; color: var(--ink); }
+.calc-result--feature.is-negative .calc-period { color: var(--ink-3); }
+
+/* Price display */
+.price-block { margin: 0 0 24px; padding: 16px 18px; border-radius: 14px; background: var(--blue-50); border: 1px solid var(--blue-100); }
+.price-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 0; }
+.price-line strong { font-family: var(--font-head); font-weight: 800; font-size: clamp(1.6rem, 4.5vw, 2rem); letter-spacing: -0.02em; color: var(--ink); line-height: 1.1; }
+.price-line span { font-size: .92rem; font-weight: 600; color: var(--green-700); }
+.price-note { margin: 8px 0 0; font-size: .9rem; color: var(--ink-2); }
 
 .compare { display: grid; gap: 18px; margin-top: 8px; }
 .compare-row { display: grid; gap: 8px; }
 .compare-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .95rem; }
 .compare-head strong { font-family: var(--font-head); font-variant-numeric: tabular-nums; }
 .bar { height: 16px; border-radius: 999px; background: var(--blue-50); overflow: hidden; }
-.bar-fill { height: 100%; width: 0; border-radius: inherit; transition: width .7s var(--ease); }
+.bar-fill { height: 100%; width: 0; border-radius: inherit; transition: width .6s var(--ease); }
 .bar-fill--before { background: #9AA7AD; }
-.bar-fill--after { background: var(--green); }
+.bar-fill--after { background: var(--green); transition-delay: .12s; } /* grows just after "before" */
 .bar-fill--tbc {
   width: 100% !important;
   background: repeating-linear-gradient(-45deg, var(--blue-100) 0 8px, #fff 8px 16px);
@@ -398,6 +432,54 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .breakdown li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
 .breakdown li:last-child { border-bottom: 0; }
 .breakdown strong { font-family: var(--font-head); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+
+/* ---------- Savings: cumulative cost chart ---------- */
+.cost-chart { margin-top: 24px; }
+.cost-chart-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 32px; margin-bottom: 18px; }
+.cost-chart-title { font-size: 1.35rem; margin-bottom: 6px; }
+.cost-chart-sub { margin: 0; max-width: 580px; color: var(--ink-2); }
+.chart-legend { list-style: none; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .85rem; color: var(--ink-2); }
+.chart-legend li { display: flex; align-items: center; gap: 8px; }
+.chart-key { display: inline-block; flex: none; }
+.chart-key--line { width: 18px; height: 2px; border-radius: 2px; }
+.chart-key--area { width: 14px; height: 10px; border-radius: 3px; background: rgba(125, 185, 40, .28); }
+.cost-chart-plot { position: relative; width: 100%; }
+.cost-chart-plot svg { display: block; max-width: none; overflow: visible; touch-action: pan-y; cursor: crosshair; }
+.cost-chart-plot svg:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; border-radius: 8px; }
+.chart-grid line { stroke: #E3ECF0; stroke-width: 1; shape-rendering: crispEdges; }
+.chart-axis text { font: 500 11px var(--font-body); fill: var(--ink-3); font-variant-numeric: tabular-nums; }
+.chart-label, .chart-sublabel { paint-order: stroke; stroke: #fff; stroke-width: 4px; stroke-linejoin: round; }
+.chart-label { font: 600 12px var(--font-body); fill: var(--ink); }
+.chart-sublabel { font: 500 11px var(--font-body); fill: var(--ink-3); }
+.chart-tooltip {
+  position: absolute; z-index: 2; pointer-events: none; min-width: 200px;
+  background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: var(--shadow);
+  padding: 10px 12px; font-size: .82rem; line-height: 1.4;
+}
+.tt-head { color: var(--ink-3); font-size: .75rem; margin-bottom: 6px; }
+.tt-row { display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 2px 0; }
+.tt-name { display: flex; align-items: center; gap: 7px; color: var(--ink-3); }
+.tt-key { width: 12px; height: 2px; border-radius: 2px; flex: none; }
+.tt-row strong { font-family: var(--font-head); color: var(--ink); font-variant-numeric: tabular-nums; }
+.tt-foot { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--line); font-weight: 600; color: var(--ink); }
+.chart-hint { margin: 10px 0 0; font-size: .8rem; color: var(--ink-3); }
+.chart-table { margin-top: 14px; font-size: .9rem; }
+.chart-table summary { cursor: pointer; font-family: var(--font-head); font-weight: 700; color: var(--blue-600); }
+.table-scroll { overflow-x: auto; }
+.chart-table table { width: 100%; border-collapse: collapse; margin-top: 10px; font-variant-numeric: tabular-nums; }
+.chart-table th, .chart-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.chart-table th:first-child { text-align: left; }
+.chart-table thead th { color: var(--ink-3); font-weight: 500; }
+.chart-table tbody th { font-weight: 600; }
+
+/* ---------- FAQ (Home) ---------- */
+.faq-grid { display: grid; gap: 16px; }
+@media (min-width: 900px) {
+  .faq-grid { grid-template-columns: 1fr 1fr; }
+  .faq-grid .faq-item:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+.faq-item h3 { font-size: 1.08rem; margin-bottom: 8px; }
+.faq-item p { color: var(--ink-2); }
 
 /* ---------- Product teaser ---------- */
 .product-card {
@@ -443,16 +525,40 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .pct-marker.is-active { background: var(--blue-600); border-color: var(--blue-600); color: #fff; transform: translate(0, -50%) scale(1.15); }
 .pct-marker.is-active::after {
   content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--blue);
-  animation: pulse 1.6s ease-out infinite;
+  animation: pulse .9s ease-out 1 forwards; /* one ripple as the water reaches the layer, not a loop */
 }
 @keyframes pulse { from { opacity: .7; transform: scale(.8); } to { opacity: 0; transform: scale(1.5); } }
 
+/* Water-flow trace through the PCT layers (How It Works); stroke sizes are set in app.js */
+.pct-flow {
+  position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; overflow: visible;
+  pointer-events: none; opacity: 0; transition: opacity .35s var(--ease);
+}
+.pct-flow.is-ready { opacity: 1; }
+.pct-flow-track { fill: none; stroke: #9DD3EE; stroke-linecap: round; opacity: .75; }
+.pct-flow-fill { fill: none; stroke: url(#pctFlowGrad); stroke-linecap: round; }
+.pct-flow-head {
+  position: absolute; left: 0; top: 0; z-index: 1; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #E3F6FD 0, #4FB3E3 45%, #0479AE 100%);
+  box-shadow: 0 0 0 2px #fff, 0 0 12px 3px rgba(5, 153, 216, .45);
+  opacity: 0; transition: opacity .3s var(--ease); pointer-events: none; will-change: transform;
+}
+.pct-flow-head.is-on { opacity: 1; }
+@media (min-width: 700px) {
+  .pct-flow-head { width: 18px; height: 18px; margin: -9px 0 0 -9px; box-shadow: 0 0 0 3px #fff, 0 0 16px 4px rgba(5, 153, 216, .45); }
+}
+
 .pct-steps { list-style: none; }
+/* Each step gets a tall scroll "dwell" so the active layer stays highlighted long enough to read */
 .pct-step {
   padding: 22px 0 36px; border-top: 1px solid var(--line);
-  opacity: .45; transition: opacity .4s var(--ease);
+  min-height: 55vh;
+  display: flex; flex-direction: column; justify-content: center;
+  opacity: .45; transition: opacity .5s var(--ease);
 }
+.pct-step > * { align-self: flex-start; }
 .pct-step:first-child { border-top: 0; padding-top: 0; }
+.pct-step:last-child { min-height: 0; }
 .pct-step.is-active { opacity: 1; }
 .step-num { font-family: var(--font-head); font-weight: 800; font-size: .8rem; letter-spacing: .1em; color: var(--blue-600); display: block; margin-bottom: 8px; }
 .pct-step h3 { font-size: clamp(1.25rem, 3vw, 1.6rem); }
@@ -467,8 +573,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 @media (min-width: 1040px) {
   .pct { grid-template-columns: 240px 1fr; gap: 80px; }
-  .pct-step { padding-block: 64px 120px; }
-  .pct-step:last-child { padding-bottom: 40px; }
+  /* Hold the diagram mid-screen, level with the centred step text (figure is ~600px tall) */
+  .pct-visual { top: max(calc(var(--header-h) + 20px), calc(50vh - 300px)); }
+  .pct-step { padding-block: 64px 120px; min-height: 80vh; }
+  .pct-step:last-child { padding-bottom: 40px; min-height: 45vh; }
 }
 /* Without JS (or with reduced motion) show every step at full strength */
 html:not(.js) .pct-step, .reduce-motion .pct-step { opacity: 1; }
@@ -501,14 +609,16 @@ html:not(.js) .pct-step, .reduce-motion .pct-step { opacity: 1; }
 }
 .gallery-main img {
   position: absolute; inset: 0; width: 100%; height: 100%; padding: 9%;
-  object-fit: contain; mix-blend-mode: multiply; transition: opacity .25s;
+  object-fit: contain; mix-blend-mode: multiply; transition: opacity .25s, transform .5s var(--ease);
 }
+@media (hover: hover) { .gallery-main:hover img { transform: scale(1.05); } }
 .gallery-thumbs { display: flex; gap: 10px; }
 .gallery-thumb {
   width: 84px; height: 84px; border-radius: 16px; border: 2px solid var(--line); background: var(--blue-50);
   padding: 8px; cursor: pointer; display: block; transition: border-color .2s;
 }
-.gallery-thumb img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.gallery-thumb img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transition: transform .3s var(--ease); }
+@media (hover: hover) { .gallery-thumb:hover img { transform: scale(1.08); } }
 .gallery-thumb[aria-pressed="true"] { border-color: var(--blue-600); }
 
 .specs-table { width: 100%; border-collapse: collapse; font-size: .98rem; }
@@ -572,7 +682,8 @@ html:not(.js) .pct-step, .reduce-motion .pct-step { opacity: 1; }
 .footer-grid { display: grid; gap: 36px; }
 .footer-logo { display: inline-block; background: #fff; border-radius: 14px; padding: 10px 14px; margin-bottom: 16px; }
 .footer-logo img { height: 40px; width: auto; }
-.site-footer h4 { color: #fff; font-size: .82rem; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; }
+/* .footer-heading is an h2 (for heading hierarchy) styled exactly like the old footer h4 */
+.site-footer h4, .site-footer .footer-heading { color: #fff; font-size: .82rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 14px; }
 .footer-links { list-style: none; display: grid; gap: 10px; }
 .footer-contact { list-style: none; display: grid; gap: 10px; }
 .footer-contact li { display: flex; gap: 10px; align-items: center; }
@@ -582,19 +693,24 @@ html:not(.js) .pct-step, .reduce-motion .pct-step { opacity: 1; }
 @media (max-width: 959px) { .site-footer { padding-bottom: 104px; } }
 
 /* ---------- Scroll reveal ---------- */
-.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+/* Section entrances: quick and consistent (350ms) */
+.js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .35s var(--ease), transform .35s var(--ease); }
 /* Horizontal slides only where there's room, so nothing pokes past the viewport on phones */
 @media (min-width: 900px) {
-  .js .reveal--left { transform: translateX(-24px); }
-  .js .reveal--right { transform: translateX(24px); }
+  .js .reveal--left { transform: translateX(-20px); }
+  .js .reveal--right { transform: translateX(20px); }
 }
 .js .reveal.is-in { opacity: 1; transform: none; }
-.reveal[data-delay="1"] { transition-delay: .08s; }
-.reveal[data-delay="2"] { transition-delay: .16s; }
-.reveal[data-delay="3"] { transition-delay: .24s; }
+.reveal[data-delay="1"] { transition-delay: .06s; }
+.reveal[data-delay="2"] { transition-delay: .12s; }
+.reveal[data-delay="3"] { transition-delay: .18s; }
 
+/* Reduced motion: no movement and no loops; entrances fall back to a plain, quick fade */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
-  .js .reveal { opacity: 1; transform: none; }
+  .js .reveal, .js .reveal--left, .js .reveal--right { transform: none !important; transition: opacity .3s linear !important; }
+  .js .trust .i-wrap { transform: none !important; transition: opacity .3s linear !important; }
+  .btn-primary:hover, .btn-light:hover, .btn-primary:active, .btn-light:active,
+  .gallery-main:hover img, .gallery-thumb:hover img { transform: none !important; }
 }

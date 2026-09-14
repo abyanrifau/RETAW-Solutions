@@ -1,0 +1,21 @@
+# Search engines and AI assistants are welcome to crawl the whole site.
+# AI crawlers are listed explicitly so their access is unambiguous.
+User-agent: *
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: Google-Extended
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: anthropic-ai
+User-agent: CCBot
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /README.md
+
+Sitemap: https://www.retaw.mv/sitemap.xml

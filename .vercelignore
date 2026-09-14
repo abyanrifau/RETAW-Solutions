@@ -1,0 +1,10 @@
+# Keep project notes and tooling out of the public deployment
+README.md
+dev-server.py
+.claude
+.git
+
+# Source/unused images not referenced by any page
+assets/retaw-pct-cartridge-diagram.jpg
+assets/retaw-ro-membrane-illustration.jpg
+assets/ro-membrane-layers.jpg
