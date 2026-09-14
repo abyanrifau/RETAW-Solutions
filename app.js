@@ -176,7 +176,7 @@
     }
 
     function draw() {
-      var W = Math.max(280, plot.clientWidth), narrow = W < 560, H = narrow ? 260 : 320;
+      var W = Math.max(200, plot.clientWidth), narrow = W < 560, H = narrow ? 260 : 320; // never wider than its card on small phones
       var m = { top: 18, right: narrow ? 14 : 150, bottom: 30, left: narrow ? 44 : 56 };
       var iw = W - m.left - m.right, ih = H - m.top - m.bottom;
       var monthly = shown, bEnd = monthly * MONTHS, sEnd = s1CostAt(MONTHS);
@@ -197,7 +197,8 @@
         el("text", { x: m.left - 8, y: y(v) + 4, "text-anchor": "end" }, axis).textContent = compact(v);
       }
       for (var yr = 0; yr <= 5; yr++) {
-        el("text", { x: x(yr * 12), y: H - 8, "text-anchor": yr === 0 ? "start" : yr === 5 ? "end" : "middle" }, axis)
+        // Narrow charts: centre every label on its tick so neighbours never collide (the margins absorb the overhang)
+        el("text", { x: x(yr * 12), y: H - 8, "text-anchor": narrow || (yr > 0 && yr < 5) ? "middle" : yr === 0 ? "start" : "end" }, axis)
           .textContent = yr === 0 ? (narrow ? "Now" : "Today") : (narrow ? "Yr " : "Year ") + yr;
       }
 
