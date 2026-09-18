@@ -39,17 +39,23 @@
   var toggle = $("[data-nav-toggle]");
   var nav = $("[data-nav]");
   if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      nav.classList.toggle("is-open", !open);
+    var setNav = function (open) {
+      toggle.setAttribute("aria-expanded", String(open));
+      nav.classList.toggle("is-open", open);
+    };
+    var navOpen = function () { return toggle.getAttribute("aria-expanded") === "true"; };
+    toggle.addEventListener("click", function () { setNav(!navOpen()); });
+    nav.addEventListener("click", function (e) { if (e.target.closest("a")) setNav(false); });
+    // Close on Escape (returning focus to the toggle), on a tap outside the header, and when the layout switches to desktop
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && navOpen()) { setNav(false); toggle.focus(); }
     });
-    nav.addEventListener("click", function (e) {
-      if (e.target.closest("a")) {
-        toggle.setAttribute("aria-expanded", "false");
-        nav.classList.remove("is-open");
-      }
+    document.addEventListener("click", function (e) {
+      if (navOpen() && !e.target.closest("[data-header]")) setNav(false);
     });
+    var desktopMq = window.matchMedia("(min-width: 960px)");
+    var onMq = function () { if (desktopMq.matches) setNav(false); };
+    if (desktopMq.addEventListener) desktopMq.addEventListener("change", onMq); else desktopMq.addListener(onMq);
   }
 
   /* ---------- Sticky CTA (mobile) ---------- */
@@ -293,12 +299,27 @@
       showTip();
     }
 
-    svg.addEventListener("pointermove", function (e) {
-      if (!geo || reveal < 1) return;
-      var rect = svg.getBoundingClientRect(), px = (e.clientX - rect.left) * (geo.W / rect.width);
-      setHover(Math.round(((px - geo.m.left) / geo.iw) * MONTHS));
-    });
-    svg.addEventListener("pointerleave", function () { setHover(null); });
+    // Pointer tracking is throttled to one redraw per frame; taps on touch screens show the readout too
+    var pendingX = null, hoverRaf = null;
+    function monthAt(clientX) {
+      var rect = svg.getBoundingClientRect(), px = (clientX - rect.left) * (geo.W / rect.width);
+      return Math.round(((px - geo.m.left) / geo.iw) * MONTHS);
+    }
+    function trackPointer(e) {
+      if (!geo) return;
+      pendingX = e.clientX;
+      if (hoverRaf) return;
+      hoverRaf = requestAnimationFrame(function () {
+        hoverRaf = null;
+        if (pendingX !== null) setHover(monthAt(pendingX));
+      });
+    }
+    function clearHover() { pendingX = null; setHover(null); }
+    svg.addEventListener("pointermove", trackPointer);
+    svg.addEventListener("pointerdown", trackPointer);
+    svg.addEventListener("pointerleave", function (e) { if (e.pointerType === "mouse") clearHover(); });
+    svg.addEventListener("pointercancel", clearHover); // a touch that turns into a scroll
+    document.addEventListener("pointerdown", function (e) { if (hoverM !== null && !svg.contains(e.target)) clearHover(); });
     svg.addEventListener("focus", function () {
       var pb = paybackMonths(shown);
       setHover(pb !== null && pb <= MONTHS ? Math.ceil(pb) : 12);
@@ -477,6 +498,14 @@
     trustLists.forEach(function (t) { trustObs.observe(t); });
   } else {
     trustLists.forEach(function (t) { t.classList.add("is-popped"); });
+  }
+
+  /* ---------- Pause looping decorations while off screen (saves CPU and battery on phones) ---------- */
+  if ("IntersectionObserver" in window) {
+    var loopObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle("is-paused", !en.isIntersecting); });
+    });
+    $$(".wave, .flow").forEach(function (el) { loopObs.observe(el); });
   }
 
   /* ---------- Smooth scrolling for same-page anchor links ---------- */

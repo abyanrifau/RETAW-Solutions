@@ -25,7 +25,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Work+Sans:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Work+Sans:wght@400;500;600&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Work+Sans:wght@400;500;600&display=swap"></noscript>
   <link rel="preload" as="image" href="assets/retaw-s1-product-cutout.webp">
   <link rel="stylesheet" href="styles.css">
   <script>document.documentElement.classList.add("js")</script>
@@ -233,45 +233,13 @@
         </div>
       </div>
       <div class="wave" aria-hidden="true">
-        <svg viewBox="0 0 2880 60" preserveAspectRatio="none">
-          <path class="wave-back" d="M0 30 Q180 0 360 30 T720 30 T1080 30 T1440 30 T1800 30 T2160 30 T2520 30 T2880 30 V60 H0Z"/>
-          <path class="wave-front" d="M0 40 Q180 18 360 40 T720 40 T1080 40 T1440 40 T1800 40 T2160 40 T2520 40 T2880 40 V60 H0Z"/>
-        </svg>
-      </div>
-    </section>
-
-    <!-- ============ HOW IT WORKS TEASER ============ -->
-    <section class="section">
-      <div class="container grid-2">
-        <div class="reveal reveal--left">
-          <p class="eyebrow">How it works</p>
-          <h2>From your tap to your glass in two stages</h2>
-          <p class="lede">Every drop passes through RETAW's patented PCT composite element, then a DOW reverse osmosis membrane, before it reaches your faucet.</p>
-          <ol class="flow" style="margin:32px 0">
-            <li>
-              <span class="flow-dot">1</span>
-              <div><h3>PCT Composite Filter Element</h3><p>Four layers in one cartridge remove sand, rust, chlorine, odour and fine particles.</p></div>
-            </li>
-            <li>
-              <span class="flow-dot">2</span>
-              <div><h3>400 GPD RO Membrane</h3><p>Filters down to 0.0001 micron, removing heavy metals, bacteria, viruses and scale.</p></div>
-            </li>
-            <li>
-              <span class="flow-dot"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
-              <div><h3>Clean water at your faucet</h3><p>Around 1 litre a minute, whenever you need it.</p></div>
-            </li>
-          </ol>
-          <a class="text-link" href="how-it-works">See the full filtration process
-            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        </div>
-        <div class="media-frame reveal reveal--right" style="aspect-ratio:4/3">
-          <img src="assets/retaw-ro-membrane.svg" alt="Illustration of the spiral-wound RO membrane unrolling, with water flowing through its layers" width="1200" height="900" loading="lazy" decoding="async">
-        </div>
+        <svg class="wave-back" viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0 30 Q180 0 360 30 T720 30 T1080 30 T1440 30 T1800 30 T2160 30 T2520 30 T2880 30 V60 H0Z"/></svg>
+        <svg class="wave-front" viewBox="0 0 2880 60" preserveAspectRatio="none"><path d="M0 40 Q180 18 360 40 T720 40 T1080 40 T1440 40 T1800 40 T2160 40 T2520 40 T2880 40 V60 H0Z"/></svg>
       </div>
     </section>
 
     <!-- ============ SAVINGS TEASER ============ -->
-    <section class="section section--tint">
+    <section class="section">
       <div class="container grid-2">
         <div class="reveal">
           <p class="eyebrow">Savings</p>
@@ -305,6 +273,36 @@
           </div>
           <p class="calc-note">Net savings after buying the S1 (MVR 5,660, installed free) and a filter change every 6 months (MVR 600 each).</p>
         </form>
+      </div>
+    </section>
+
+    <!-- ============ HOW IT WORKS TEASER ============ -->
+    <section class="section section--tint">
+      <div class="container grid-2">
+        <div class="reveal reveal--left">
+          <p class="eyebrow">How it works</p>
+          <h2>From your tap to your glass in two stages</h2>
+          <p class="lede">Every drop passes through RETAW's patented PCT composite element, then a DOW reverse osmosis membrane, before it reaches your faucet.</p>
+          <ol class="flow" style="margin:32px 0">
+            <li>
+              <span class="flow-dot">1</span>
+              <div><h3>PCT Composite Filter Element</h3><p>Four layers in one cartridge remove sand, rust, chlorine, odour and fine particles.</p></div>
+            </li>
+            <li>
+              <span class="flow-dot">2</span>
+              <div><h3>400 GPD RO Membrane</h3><p>Filters down to 0.0001 micron, removing heavy metals, bacteria, viruses and scale.</p></div>
+            </li>
+            <li>
+              <span class="flow-dot"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>
+              <div><h3>Clean water at your faucet</h3><p>Around 1 litre a minute, whenever you need it.</p></div>
+            </li>
+          </ol>
+          <a class="text-link" href="how-it-works">See the full filtration process
+            <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="media-frame reveal reveal--right" style="aspect-ratio:4/3">
+          <img src="assets/retaw-ro-membrane.svg" alt="Illustration of the spiral-wound RO membrane unrolling, with water flowing through its layers" width="1200" height="900" loading="lazy" decoding="async">
+        </div>
       </div>
     </section>
 

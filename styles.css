@@ -144,6 +144,10 @@ button, input, select, textarea { font: inherit; color: inherit; }
   transition: border-color .2s, box-shadow .2s;
 }
 .site-header.is-scrolled { border-color: var(--line); box-shadow: 0 4px 20px rgba(30, 42, 48, .05); }
+/* Phones, tablets and touch devices: skip the backdrop blur, which re-renders on every scroll frame; a near-opaque header looks the same */
+@media (max-width: 959px), (hover: none) {
+  .site-header { background: rgba(255, 255, 255, .97); backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .brand img { height: 40px; width: auto; }
 
@@ -237,7 +241,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .hero .bubble--a { width: 54px; height: 54px; top: 4%; right: 3%; }
 .hero .bubble--b { width: 30px; height: 30px; bottom: 22%; left: 8%; background: var(--green); }
 .hero-product {
-  position: relative; width: min(62%, 300px); mix-blend-mode: multiply;
+  position: relative; width: min(62%, 300px); /* transparent cut-out: no blend mode needed */
   filter: drop-shadow(0 30px 30px rgba(30, 42, 48, .18));
 }
 .spec-chip {
@@ -286,11 +290,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* Animated wave */
 .wave { position: relative; height: 56px; margin-top: -8px; overflow: hidden; pointer-events: none; }
-.wave svg { position: absolute; bottom: 0; left: 0; width: 200%; max-width: none; height: 100%; }
+/* Each wave layer is its own SVG, moved as a whole on the GPU (no per-frame repaint) */
+.wave svg { position: absolute; bottom: 0; left: 0; width: 200%; max-width: none; height: 100%; will-change: transform; }
 /* Slow, continuous drift: more felt than seen */
 .wave-back { fill: #C6E5F5; animation: wave 60s linear infinite; }
 .wave-front { fill: #fff; animation: wave 42s linear infinite reverse; }
 .wave--to-tint .wave-front { fill: var(--blue-50); }
+/* Looping decorations pause while off screen (app.js toggles .is-paused) */
+.wave.is-paused svg, .flow.is-paused li::before { animation-play-state: paused; }
 @keyframes wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
@@ -444,7 +451,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .chart-key { display: inline-block; flex: none; }
 .chart-key--line { width: 18px; height: 2px; border-radius: 2px; }
 .chart-key--area { width: 14px; height: 10px; border-radius: 3px; background: rgba(125, 185, 40, .28); }
-.cost-chart-plot { position: relative; width: 100%; }
+.cost-chart-plot { position: relative; width: 100%; min-height: 260px; } /* reserve the chart's height: no layout jump when it draws */
+@media (min-width: 640px) { .cost-chart-plot { min-height: 320px; } }
 .cost-chart-plot svg { display: block; max-width: none; overflow: visible; touch-action: pan-y; cursor: crosshair; }
 .cost-chart-plot svg:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; border-radius: 8px; }
 .chart-grid line { stroke: #E3ECF0; stroke-width: 1; shape-rendering: crispEdges; }
@@ -504,7 +512,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: grid; gap: 0; background: #fff; border: 1px solid var(--line); border-radius: 28px; overflow: hidden;
 }
 .product-card-media { background: radial-gradient(circle at 50% 40%, #fff 0, var(--blue-100) 80%); display: grid; place-items: center; padding: 36px 24px; }
-.product-card-media img { width: min(56%, 260px); mix-blend-mode: multiply; filter: drop-shadow(0 20px 20px rgba(30,42,48,.15)); }
+.product-card-media img { width: min(56%, 260px);filter: drop-shadow(0 20px 20px rgba(30,42,48,.15)); }
 .product-card-body { padding: clamp(24px, 5vw, 56px); }
 .product-card > * { min-width: 0; } /* stop content forcing the card wider than the screen */
 @media (min-width: 900px) { .product-card { grid-template-columns: .9fr 1.1fr; } }
@@ -578,7 +586,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Each step gets a tall scroll "dwell" so the active layer stays highlighted long enough to read */
 .pct-step {
   padding: 22px 0 36px; border-top: 1px solid var(--line);
-  min-height: 55vh;
+  min-height: 55vh; min-height: 55svh; /* svh: no jumps when the mobile address bar shows/hides */
   display: flex; flex-direction: column; justify-content: center;
   opacity: .45; transition: opacity .5s var(--ease);
 }
@@ -601,8 +609,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .pct { grid-template-columns: 240px 1fr; gap: 80px; }
   /* Hold the diagram mid-screen, level with the centred step text (figure is ~600px tall) */
   .pct-visual { top: max(calc(var(--header-h) + 20px), calc(50vh - 300px)); }
-  .pct-step { padding-block: 64px 120px; min-height: 80vh; }
-  .pct-step:last-child { padding-bottom: 40px; min-height: 45vh; }
+  .pct-step { padding-block: 64px 120px; min-height: 80vh; min-height: 80svh; }
+  .pct-step:last-child { padding-bottom: 40px; min-height: 45vh; min-height: 45svh; }
 }
 /* Without JS (or with reduced motion) show every step at full strength */
 html:not(.js) .pct-step, .reduce-motion .pct-step { opacity: 1; }

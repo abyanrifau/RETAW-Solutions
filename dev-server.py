@@ -34,6 +34,17 @@ class CleanUrlHandler(http.server.SimpleHTTPRequestHandler):
         local = os.path.join(ROOT, path.lstrip("/"))
         if path != "/" and not os.path.splitext(path)[1] and os.path.isfile(local + ".html"):
             self.path = path + ".html" + query
+            return super().do_GET()
+
+        # Unknown paths get the site's 404 page, as Vercel does
+        if path != "/" and not os.path.exists(local):
+            body = open(os.path.join(ROOT, "404.html"), "rb").read()
+            self.send_response(404)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+            return
         return super().do_GET()
 
 
